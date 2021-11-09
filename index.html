@@ -4,6 +4,7 @@
 <script type="text/javascript" src="scripts/bigfoot.js"></script>
 <script type="text/javascript">
     $.bigfoot({activateOnHover: true, deleteOnUnhover: true});
+    let answers = [];
 </script>
 <!-- embed pretty code -->
 <link rel="stylesheet" href="css/github-gist.css">
@@ -12,6 +13,19 @@
 <!-- Styles -->
 <link rel="stylesheet" type="text/css" href="css/index.css"/>
 <link rel="stylesheet" href="css/bigfoot-default.css"/>
+<style>
+    .adiv { display: inline;}
+    .bdiv { display: none;  }
+    .cdiv { display: none;  }
+    .ddiv { display: none;  }
+    .adiv3 { display: none;  }
+    .bdiv2 { display: none;  }
+    .bdiv4 { display: none;  }
+    .bdiv42 { display: none;  }
+    .bdiv5 { display: none;  }
+    .bdiv6 { display: none;  }
+    .answers { display: none; }
+</style>
 <header id="page-header">
     <a href="">fMRI Playground: Simple summaries & simulations of neuroimaging methods</a>
 </header>
@@ -35,10 +49,210 @@
         <p><a href='https://paulscotti.github.io/fmriplayground'>Go back</a></p>
     </div>
     <div id="CYOA" style='display: none'>
-        <p><b>What kind of research question are you trying to answer?</b></p>
-        Work in progress
-        <p><a href='javascript:history.back()'>Go back</a></p>
+        <h3><i>Which fMRI analysis method should you use?</i></h3>
+        <!-- A Questions -->
+        <p class="adiv"><b>Which of the following best describes your primary goal in terms of brain areas?</b></p>
+        <ol>
+        <a href="javascript:void(0);" class="adiv" onclick="A(1);"><li>
+            I don’t know where my effect will be, so I want to explore the brain
+        </li></a>
+        <a href="javascript:void(0);" class="adiv" onclick="A(2);"><li>
+            I have specific brain region(s) of interest in mind
+        </li></a>
+        <a href="javascript:void(0);" class="adiv" onclick="A(3);"><li>
+            I want to explore the interactions between brain regions
+        </li></a>
+        </ol>
+        <ol>
+        <a href="javascript:void(0);" class="adiv3" onclick="A3(4);"><li>
+            I’m interested in how brain regions coactivate with each other
+        </li></a>
+        <a href="javascript:void(0);" class="adiv3" onclick="A3(5);"><li>
+            I'm interested in how the brain can be represented as a specialized network
+        </li></a>
+        <a href="javascript:void(0);" class="adiv3" onclick="A3(6);"><li>
+            I'm interested in causal relationships for how brain regions interact
+        </li></a>
+        </ol>
+        <!-- B Questions -->
+        <p class="bdiv"><b>Which of the following best describes your primary goal in terms of level of understanding?</b></p>
+        <ol>
+        <a href="javascript:void(0);" class="bdiv" onclick="B(1);"><li>
+            I’m interested in comparing responsiveness (amount of activation) to different stimuli or conditions
+        </li></a>
+        <a href="javascript:void(0);" class="bdiv" onclick="B(2);"><li>
+            I’m interested in exploring representations (patterns of activation) for different stimuli or conditions
+        </li></a>
+        <a href="javascript:void(0);" class="bdiv" onclick="B(3);"><li>
+            I’m interested in whether there is systematic or map-like organization of voxel preferences
+        </li></a>
+        <a href="javascript:void(0);" class="bdiv" onclick="B(4);"><li>
+            I want to try to predict the experimental stimulus or condition from brain activity
+        </li></a>
+        <a href="javascript:void(0);" class="bdiv" onclick="B(5);"><li>
+            I want to try to predict neural activity based on the presented stimulus/condition
+        </li></a>
+        <a href="javascript:void(0);" class="bdiv" onclick="B(6);"><li>
+            I want to explore which other brain regions are related to this region
+        </li></a>
+        </ol>
+        <!-- B2 -->
+        <ol>
+            <a href="javascript:void(0);" class="bdiv2" onclick="B2(7);"><li>
+                Can the neural signal discriminate between 2 (or a few) categories?
+            </li></a>
+            <a href="javascript:void(0);" class="bdiv2" onclick="B2(8);"><li>
+                Is the neural pattern more similar for 2 stimuli of the same type (within-condition) vs 2 stimuli of different types (across-condition)?
+            </li></a>
+            <a href="javascript:void(0);" class="bdiv2" onclick="B2(9);"><li>
+                How well does the neural representation match a particular conceptual model, behavioral pattern, etc?
+            </li></a>
+            <a href="javascript:void(0);" class="bdiv2" onclick="B2(10);"><li>
+                How can complicated brain data be reduced into a few informative representations?
+            </li></a>
+        </ol>
+        <!-- B4 -->
+        <ol>
+            <a href="javascript:void(0);" class="bdiv4" onclick="B2(11);"><li>
+                Predict between 2 (or a few) conditions?
+            </li></a>
+            <a href="javascript:void(0);" class="bdiv4" onclick="B2(12);"><li>
+                Predict individual stimuli or discriminate between many conditions?
+            </li></a>
+        </ol>
+        <!-- B42 -->
+        <ol>
+            <a href="javascript:void(0);" class="bdiv42" onclick="B2(13);"><li>
+                I have limited data and/or care about model interpretability
+            </li></a>
+            <a href="javascript:void(0);" class="bdiv42" onclick="B2(14);"><li>
+                I have lots of data and care more about prediction accuracy than model interpretability
+            </li></a>
+        </ol>
+        <!-- B5 -->
+        <ol>
+            <a href="javascript:void(0);" class="bdiv5" onclick="B2(15);"><li>
+                I have limited data and/or care about model interpretability
+            </li></a>
+            <a href="javascript:void(0);" class="bdiv5" onclick="B2(16);"><li>
+                I have lots of data and care more about prediction accuracy than model interpretability
+            </li></a>
+        </ol>
+        <!-- B6 -->
+        <ol>
+            <a href="javascript:void(0);" class="bdiv6" onclick="B2(17);"><li>
+                Connectivity (resting-state, DTI)
+            </li></a>
+            <a href="javascript:void(0);" class="bdiv6" onclick="B2(18);"><li>
+                Show correlated timecourses (task-based connectivity)
+            </li></a>
+            <a href="javascript:void(0);" class="bdiv6" onclick="B2(19);"><li>
+                Have similar representational patterns (RSA)
+            </li></a>
+        </ol>
+        <!-- C Questions -->
+        <p class="cdiv"><b>Which of the following best describes your primary goal in terms of participant populations?</b></p>
+        <ol>
+        <a href="javascript:void(0);" class="cdiv" onclick="C(1);"><li>
+            I want to look at a single subject
+        </li></a>
+        <a href="javascript:void(0);" class="cdiv" onclick="C(2);"><li>
+            I want to look at group-level effects in a healthy control population
+        </li></a>
+        <a href="javascript:void(0);" class="cdiv" onclick="C(3);"><li>
+            I want to look at individual differences
+        </li></a>
+        <a href="javascript:void(0);" class="cdiv" onclick="C(4);"><li>
+            I want to look at differences between subpopulations (clinical, demographic, etc) or groups of participants
+        </li></a>
+        </ol>
+        <!-- D Questions -->
+        <p class="ddiv"><b>Do you need assistance localizing/defining your brain regions before doing your main analyses?</b></p>
+        <ol>
+        <a href="javascript:void(0);" class="ddiv" onclick="D(1);"><li>
+            Yes, I would like to define my region(s) functionally
+        </li></a>
+        <a href="javascript:void(0);" class="ddiv" onclick="D(2);"><li>
+            Yes, anatomical atlas or parcels
+        </li></a>
+        <a href="javascript:void(0);" class="ddiv" onclick="D(3);"><li>
+            Yes, retinotopically specific visual areas
+        </li></a>
+        <a href="javascript:void(0);" class="ddiv" onclick="D(4);"><li>
+            No
+        </li></a>
+        </ol>
+        <!-- Answers -->
+        <p class="answers"><b>Lookup this key in google doc:</b></p>
+        <p class="answers" id="akey">key</p>
     </div>
+    <script>
+    function A(x) {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        answers.push(x)
+        console.log("answers:",answers)
+        $('.adiv').hide()
+        if (x==3){
+            $('.adiv3').show()
+        } else {
+            $('.bdiv').show()
+        }
+    }
+    function A3(x) {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        answers[0] = x
+        console.log("answers:",answers)
+        $('.adiv3').hide()
+        $('.cdiv').show()
+    }
+    function B(x) {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        answers.push(x)
+        console.log("answers:",answers)
+        $('.bdiv').hide()
+        if ((x==1)||(x==3)){
+            $('.cdiv').show()
+        } else {
+            $('.bdiv'+x).show()
+        }
+    }
+    function B2(x) {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        answers[answers.length-1] = x
+        console.log("answers:",answers)
+        $('.bdiv2').hide()
+        $('.bdiv4').hide()
+        $('.bdiv42').hide()
+        $('.bdiv5').hide()
+        $('.bdiv6').hide()
+        if (x==12){
+            $('.bdiv42').show()
+        } else {
+            $('.cdiv').show()
+        }
+    }
+    function C(x) {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        answers.push(x)
+        console.log("answers:",answers)
+        $('.cdiv').hide()
+        $('.ddiv').show()
+    }
+    function D(x) {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        answers.push(x)
+        console.log("answers:",answers)
+        $('.ddiv').hide()
+        // show final outputs
+        $('.answers').show()
+        if (answers[0]>3) {
+            $('#akey').text(answers.slice(0,1))
+        } else {
+            $('#akey').text(answers.slice(0,2))   
+        }
+    }
+    </script>
+
     <div id="list" style='display: none'>
         <h2>List of fMRI analysis techniques</h2>
         <iframe src="https://paulscotti.github.io/fmriplayground/flowchart.pdf" width="960px" height="60%"></iframe>
