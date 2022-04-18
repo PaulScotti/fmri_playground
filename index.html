@@ -248,7 +248,12 @@
         if (answers[0]>3) {
             $('#akey').text(answers.slice(0,1))
         } else {
-            $('#akey').text(answers.slice(0,2))   
+            if (answers.slice(0,2) == [1,1]) {
+                $('#akey').text("Univariate analysis: Whole brain")
+                $('#akey').attr('href',"https://nbviewer.org/github/PaulScotti/fmriplayground/blob/main/methods/univariate_contrast/univariate_contrast.ipynb")
+            } else {
+                $('#akey').text(answers.slice(0,2))   
+            }
         }
     }
     </script>
